@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: sardine-wms
+  cloud:
+    config:
+      uri: http://localhost:5002
+      fail-fast: true
+      username: user
+      password: ${CONFIG_SERVER_PASSWORD:password}
+      retry:
+        initial-interval: 2000
+        max-interval: 10000
+        multiplier: 2
+        max-attempts: 10
+  rabbitmq:
+      host: 172.17.128.244
+
+server:
+  port: 9001
+
+msg: Hello
+
+eureka:
+  instance:
+    metadata-map:
+      user.name: ${security.user.name}
+      user.password: ${security.user.password}
+  client:
+    service-url:
+      defaultZone: http://user:${REGISTRY_SERVER_PASSWORD:password}@localhost:5001/eureka/
+
+security:
+  user:
+    name: user
+    password: password
+  oauth2:
+    client:
+      clientId: sardine-wms
+      clientSecret: password
+      accessTokenUri: http://127.0.0.1:5007/sardineAuth/oauth/token
+      grant-type: client_credentials
+      scope: server
+    resource:
+      user-info-uri: http://127.0.0.1:5007/sardineAuth/current

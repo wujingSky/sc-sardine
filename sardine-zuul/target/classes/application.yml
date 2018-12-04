@@ -1,0 +1,36 @@
+eureka:
+  instance:
+    hostname: 127.0.0.1
+    prefer-ip-address: true
+    metadata-map:
+      user.name: ${security.user.name}
+      user.password: ${security.user.password}
+  client:
+    service-url:
+      defaultZone: http://user:${REGISTRY_SERVER_PASSWORD:password}@localhost:5001/eureka/
+
+server:
+  port: 5006
+
+management:
+  security:
+    enabled: false
+
+zuul:
+  ignoredServices: '*'
+  routes:
+    sardine-auth:
+      path: /sardineAuth/**
+      stripPrefix: false
+      sensitiveHeaders:
+      url: http://127.0.0.1:5007
+    sardine-ia:
+      path: /ia/**
+      stripPrefix: false
+      sensitiveHeaders:
+      serviceId: sardine-ia
+    sardine-wms:
+      path: /wms/**
+      stripPrefix: false
+      sensitiveHeaders:
+      url: http://127.0.0.1:9001

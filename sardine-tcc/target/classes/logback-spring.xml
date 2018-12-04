@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <jmxConfigurator/>
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>512</queueSize>
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <springProfile name="default">
+        <logger name="com.hd123.sardine" level="DEBUG"/>
+    </springProfile>
+    <springProfile name="dev">
+        <logger name="com.hd123.sardine" level="DEBUG"/>
+    </springProfile>
+    <springProfile name="test">
+        <logger name="com.hd123.sardine" level="DEBUG"/>
+    </springProfile>
+    <springProfile name="stag">
+        <logger name="com.hd123.sardine" level="WARN"/>
+    </springProfile>
+    <springProfile name="prod">
+        <logger name="com.hd123.sardine" level="WARN"/>
+    </springProfile>
+
+    <root level="WARN">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

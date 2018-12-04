@@ -1,0 +1,6 @@
+FROM java:8
+VOLUME /tmp
+ADD ./target/sardine-config-1.0-SNAPSHOT.jar /app.jar
+RUN bash -c 'touch /app.jar'
+EXPOSE 5002
+ENTRYPOINT ["java","-jar","/app.jar"]

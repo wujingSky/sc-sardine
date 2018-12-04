@@ -1,0 +1,37 @@
+logging:
+  level:
+    org.springframework.cloud.netflix.zuul.filters.post.SendErrorFilter: error
+
+server:
+  port: 5003
+
+turbine:
+  stream:
+    port: 5004
+
+eureka:
+  instance:
+    hostname: 127.0.0.1
+    prefer-ip-address: true
+    metadata-map:
+      user.name: ${security.user.name}
+      user.password: ${security.user.password}
+  client:
+    service-url:
+      defaultZone: http://user:${REGISTRY_SERVER_PASSWORD:password}@localhost:5001/eureka/
+
+spring:
+  rabbitmq:
+    host: 172.17.128.244
+  boot:
+    admin:
+      routes:
+        endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream
+      turbine:
+        clusters: default
+        location: http://monitor:${turbine.stream.port}
+
+security:
+  user:
+    name: admin
+    password: ${MONITOR_SERVER_PASSWORD:admin}

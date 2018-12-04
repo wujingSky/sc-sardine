@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: sardine-auth
+  datasource:
+    url: jdbc:mysql://172.17.1.54:3306/sardinecloud?characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: sardine
+    password: sardine
+  jpa:
+    show-sql: true
+  cloud:
+    config:
+      uri: http://172.17.128.244:5002
+      fail-fast: true
+      username: user
+      password: ${CONFIG_SERVER_PASSWORD:password}
+      retry:
+        initial-interval: 2000
+        max-interval: 10000
+        multiplier: 2
+        max-attempts: 10
+  rabbitmq:
+    host: 172.17.128.244
+
+server:
+  context-path: /sardineAuth
+  port: 5007
+
+management:
+  security:
+    enabled: false
+  context-path: /sardineAuthManager
+
+eureka:
+  instance:
+    hostname: 127.0.0.1
+    prefer-ip-address: true
+    health-check-url-path: ${server.context-path}${management.context-path}/health
+    status-page-url-path: ${server.context-path}${management.context-path}/info
+    metadata-map:
+      management.context-path: ${server.context-path}${management.context-path}
+  client:
+    service-url:
+      defaultZone: http://user:${REGISTRY_SERVER_PASSWORD:password}@localhost:5001/eureka/

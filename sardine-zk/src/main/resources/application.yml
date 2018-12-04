@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: sardine-zipkin
+  rabbitmq:
+    host: 172.17.128.244
+
+server:
+  port: 5005
+
+security:
+  user:
+    name: admin
+    password: ${ZIPKIN_SERVER_PASSWORD:admin}

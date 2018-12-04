@@ -1,0 +1,10 @@
+com\hd123\sardine\ia\controller\client\WMSClient$WMSClientFallback.class
+com\hd123\sardine\ia\api\TccRequest.class
+com\hd123\sardine\ia\controller\client\TccClient$TccClientFallback.class
+com\hd123\sardine\ia\SardineIAApplication.class
+com\hd123\sardine\ia\api\IAService.class
+com\hd123\sardine\ia\controller\client\TccClient.class
+com\hd123\sardine\ia\controller\IATccController.class
+com\hd123\sardine\ia\controller\client\WMSClient.class
+com\hd123\sardine\ia\api\IARequest.class
+com\hd123\sardine\ia\service\IAServiceImpl.class

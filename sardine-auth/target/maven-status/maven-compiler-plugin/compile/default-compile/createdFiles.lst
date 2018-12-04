@@ -1,0 +1,5 @@
+com\hd123\sardine\auth\config\OAuthConfiguration$AuthenticationManagerConfiguration.class
+com\hd123\sardine\auth\SardineAuthApplication.class
+com\hd123\sardine\auth\config\OAuthConfiguration.class
+com\hd123\sardine\auth\config\ResourceServerConfiguration.class
+com\hd123\sardine\auth\controller\UserController.class
